@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIENVENIDOS</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('https://vallegrande.edu.pe/wp-content/uploads/2023/05/contacto.jpg') center center fixed;
+            background-size: cover;
+        }
+
+        form {
+            width: 80%;
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo del formulario con opacidad */
+            transition: background-color 0.3s ease; /* Animación de cambio de color de fondo */
+        }
+
+        form:hover {
+            background-color: rgba(255, 255, 255, 0.9); /* Cambio de color de fondo al hacer hover */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .checkbox-container label {
+            flex: 1;
+            margin-right: 8px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease; /* Animación de cambio de color de fondo al hacer hover */
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <form action="/registrar" method="post" id="registroForm">
+        <h1>BIENVENIDOS</h1>
+
+        <label for="area1">AREA</label>
+        <select id="area1" name="area1">
+            <option value="opcion1">ANALISIS DE SISTEMAS</option>
+            <option value="opcion2">PRODUCCION AGRARIA</option>
+        </select>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+" title="Solo se permiten letras y espacios" required>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+" title="Solo se permiten letras y espacios" required>
+
+        <label for="correo">Correo:</label>
+        <input type="email" id="correo" name="correo" required>
+
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" required>
+
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" required>
+
+        <div class="checkbox-container">
+            <label for="terminosCheckbox">Acepto los términos y condiciones</label>
+            <input type="checkbox" id="terminosCheckbox" onchange="habilitarBoton()">
+        </div>
+
+        <button type="button" onclick="verificarTerminos()" id="verificarTerminosBtn" disabled>Verificar Términos</button>
+
+        <button type="submit">Registrar</button>
+    </form>
+
+    <script>
+        function verificarTerminos() {
+            // Puedes realizar verificaciones adicionales aquí antes de mostrar un mensaje
+            alert('Términos aceptados');
+        }
+
+        function habilitarBoton() {
+            var btn = document.getElementById('verificarTerminosBtn');
+            btn.disabled = !document.getElementById('terminosCheckbox').checked;
+        }
+
+        document.getElementById('registroForm').addEventListener('submit', function (event) {
+            // Verificar si todos los campos están llenos y las condiciones se cumplen
+            var todosLosCamposLlenos = true; // Personaliza según tus necesidades
+
+            if (!todosLosCamposLlenos) {
+                // Si hay algún error, puedes mostrar un mensaje o realizar otras acciones
+                alert('Por favor, complete todos los campos.');
+                event.preventDefault(); // Evitar que el formulario se envíe normalmente
+            }
+        });
+    </script>
+</body>
+</html>
